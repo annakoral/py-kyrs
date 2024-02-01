@@ -1,11 +1,11 @@
 import json
 from _datetime import datetime
 
-def download_data(filename):
+def receive_data(filename):
     """
-    function for downloads from file json
-    :param filename: file name for downloads
-    :return: data from file json
+    получаем данные с файла джейсон
+    :param filename: имя файла
+    :return: данные из файла джейсон
     """
 
     with open(filename, 'r', encoding='utf-8') as file:
@@ -15,12 +15,12 @@ def download_data(filename):
 
     return sort_data
 
-def select_data(data, num):
+def sort_data(data, num):
     """
-    Function select num string, where "state" = "EXECUTED"
-    :param data: data for select
-    :param num: count string
-    :return: select data
+    Перебираем строки файла
+    :param data: данные для выбора
+    :param num: строка подсчета
+    :return: выводим данные
     """
     count = 0
     new_arr = []
@@ -35,11 +35,11 @@ def select_data(data, num):
 
 
 
-def refactor_account(array):
+def format_account(array):
     """
-    function hides numbers amount
-    :param array: array for refactor
-    :return: refactor string
+    функция скрывает числа
+    :param array: все цифры
+    :return: выводим строку
     """
     if array[0] == "Счет":
         str_from = array[1][-4:]
@@ -52,12 +52,12 @@ def refactor_account(array):
 
 def refactor_amount(operation_amount):
     """
-    function return amount of money and currency
-    :param operation_amount: data obout operation amount
-    :return: string
+    функция возвращает сумму денег и валюту
+    :return: строка
     """
     res = operation_amount["amount"] + " " + operation_amount["currency"]['name']
     return res
+
 
 
 def refactor_string(text):
@@ -71,10 +71,10 @@ def refactor_string(text):
 
     result += date + " " + text["description"] + "\n"
     if "from" in text:
-        account_from = refactor_account(text["from"].split())
+        account_from = format_account(text["from"].split())
         result += account_from + " -> "
 
-    account_to = refactor_account(text["to"].split())
+    account_to = format_account(text["to"].split())
     result += account_to
 
     res_amount = refactor_amount(text["operationAmount"])

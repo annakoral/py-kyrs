@@ -1,12 +1,12 @@
-from util import download_data, refactor_string, select_data
+from util import receive_data, refactor_string, sort_data
 
 
 def main():
     count_str = 5
 
     filename = "operations.json"
-    data = download_data(filename)
-    data_select = select_data(data, count_str,)
+    data = receive_data(filename)
+    data_select = sort_data(data, count_str,)
 
     for item in data_select:
 

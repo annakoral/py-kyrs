@@ -1,11 +1,11 @@
-from util import refactor_account, refactor_amount, refactor_string
+from util import format_account, refactor_amount, refactor_string
 
 
-def test_refactor_account():
+def test_format_account():
     ar = ["Счет", "90424923579946435907"]
     ar2 = ["Maestro", "3928549031574026"]
-    assert refactor_account(ar) == "Счет **5907"
-    assert refactor_account(ar2) == "Maestro 3928 54XX XXXX 4026"
+    assert format_account(ar) == "Счет **5907"
+    assert format_account(ar2) == "Maestro 3928 54XX XXXX 4026"
 
 
 def test_refactor_amount():
